@@ -1,0 +1,202 @@
+<html>
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+ <meta http-equiv="imagetoolbar" content="no"/>
+ <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+ <script src="semantic/dist/assets/library/jquery.min.js"></script>
+ <script src="semantic/dist/semantic.min.js"></script>
+	<link rel="stylesheet" type="text/css"
+		  href="basic.css">
+</head>
+<body>
+
+
+<div id="main">
+	<div id="top">
+		<div id="top-left">
+		<div id="titlename">政法部门间案事件协同系统</div>
+		</div>
+		<div id="top-right">
+			<table>
+			<tr>
+			<td>
+			<img src="New_Master_1_files/u99_normal.png"></img>
+			<span>用户单位：公安</span>
+			</td>
+			<td>
+			<img src="New_Master_1_files/u252_normal.png"></img>
+			<span id="datetime"></span>
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<img src="New_Master_1_files/u94_normal.png"></img>
+			<span style="vertical-align:40%;color:#fff">操作员：谢彤</span>
+			</td>
+			<td>
+			<img src="New_Master_1_files/u91_normal.png"></img>
+			<span>退出</span>
+			</td>
+			</tr>
+			</table>
+		</div>
+	</div>
+	<div id="middle">
+		<div id="menu-breadcrumb">
+			<div class="ui breadcrumb">
+			  <a class="section">主页</a>
+			  <i class="right chevron icon divider"></i>
+			  <a class="section">注册</a>
+			  <i class="right chevron icon divider"></i>
+			  <div class="active section">个人信息</div>
+			</div>
+		</div>
+		<div id="middle-menu">
+			<div id="menu" class="ui styled accordion">
+				<div class="active title">
+					<i class="dropdown icon"></i>
+					<a class="section" href="首页.html" target="content">主页</a>
+				</div>
+				<div class="active content">
+					<div class="accordion">
+						<div class="active title">
+							<i class="dropdown icon"></i>
+							案件登记
+						</div>
+						<div class="active content">
+							<div class="accordion">
+								<div class="content">
+									<a href="#">接处警登记</a>
+								</div>
+								<div class="content">
+									<a href="#">刑事案件登记</a>
+								</div>
+								<div class="content">
+									<a href="#"> 综合查询</a>
+								</div>
+							</div>
+						</div>
+						<div class="active title">
+							<i class="dropdown icon"></i>
+							案件管理
+						</div>
+						<div class="active content">
+							<div class="accordion">
+								<div class="content">
+									<a href="立案管理_iframe.html" target="content">立案管理</a>
+								</div>
+								<div class="content">
+									<a href="案件办理_iframe.html" target="content">案件办理</a>
+								</div>
+								<div class="content">
+									<a href="#"> 超期提醒</a>
+								</div>
+								<div class="content">
+									<a href="综合查询_iframe.html" target="content">综合查询</a>
+								</div>
+								<div class="content">
+									<a href="归档_iframe.html" target="content">归档</a>
+								</div>
+							</div>
+						</div>
+						<div class="active title">
+							<i class="dropdown icon"></i>
+							社区矫正
+						</div>
+						<div class="active content">
+							<div class="accordion">
+								<div class="content">
+									<a href="#"> 矫正人员管理</a>
+								</div>
+								<div class="content">
+									<a href="#">矫正过程管理</a>
+								</div>
+							</div>
+						</div>
+						<div class="active title">
+							<i class="dropdown icon"></i>
+							其他
+						</div>
+						<div class="active content">
+							<div class="accordion">
+								<div class="content">
+									<a href="#">卷宗管理</a>
+								</div>
+								<div class="content">
+									<a href="#">通讯录</a>
+								</div>
+								<div class="content">
+									<a href="#"> 专家信息</a>
+								</div>
+								<div class="content">
+									<a href="#">司法监督</a>
+								</div>
+								<div class="content">
+									<a href="#"> 司法信息</a>
+								</div>
+								<div class="content">
+									<a href="#"> 统计查询</a>
+								</div>
+							</div>
+						</div>
+						<div class="active title">
+							<i class="dropdown icon"></i>
+							系统管理
+						</div>
+						<div class="active content">
+							<div class="accordion">
+								<div class="content">
+									<a href="#"> 用户信息</a>
+								</div>
+								<div class="content">
+									<a href="#">角色信息</a>
+								</div>
+								<div class="content">
+									<a href="#"> 日志信息</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="middle-content">
+			<iframe name="content" scrolling="no" style="width: 100%;height: 1000px;border:0" src="首页.html">
+
+			</iframe>
+		</div>
+	</div>
+	
+	<div id="bottom">
+	</div>
+</div>
+
+<script>
+
+
+function showLeftTime()
+{
+var now=new Date();
+var year=now.getFullYear();
+var month=now.getMonth()+1;
+var day=now.getDate();
+var hours=now.getHours();
+var minutes=now.getMinutes();
+var seconds=now.getSeconds();
+$('#datetime').text(""+year+"年"+month+"月"+day+"日 "+hours+":"+minutes+":"+seconds+"");
+var timeID=setTimeout(showLeftTime,1000);
+}
+
+
+$(document).ready(function(){
+  $('.ui.accordion')
+  .accordion()
+;
+showLeftTime();
+}
+);
+
+</script>
+
+</body>
+</html>

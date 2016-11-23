@@ -1,0 +1,96 @@
+
+a{
+    text-decoration: none!important;
+}
+
+a:hover {
+    color: blue;
+}
+
+.title{
+    color:black!important;
+}
+
+#main {
+    width: 100%;
+    height: 700px;
+    padding : 10px;
+
+}
+
+#top {
+    height: 100px;
+    width: 100%;
+    background-image: url('New_Master_1_files/u88_normal.png');
+}
+
+#middle {
+
+}
+
+#bottom {
+    height: 50px;
+}
+
+#top-left {
+    width: 60%;
+    height: 100px;
+    line-height: 100px;
+    padding-left: 20px;
+    float: left;
+}
+
+#top-right {
+    width: 35%;
+    float: left;
+    height: 100%;
+    padding: 0;
+}
+
+#titlename {
+    width: 100%;
+    height: 100%;
+    font-family: Arial;
+    font-size: 40px;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+    color: #fff;
+}
+
+#top-right span {
+    vertical-align: 40%;
+    color: #fff;
+    font-size: 15px;
+}
+
+#datetime {
+    color: green !important;
+    font-size: 15px;
+}
+
+#top-right table {
+    margin-top: 35px;
+    margin-left: 20px;
+}
+
+#top-right td {
+    padding-left: 5px;
+}
+
+#menu-breadcrumb {
+    padding: 5px;
+    border: 1px solid black;
+}
+
+#middle-menu {
+    width: 20%;
+    float: left;
+}
+
+#middle-content {
+    float: left;
+    width: 80%;
+    padding: 20px;
+    border: 1px solid gray;
+}
