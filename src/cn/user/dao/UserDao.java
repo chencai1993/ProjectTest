@@ -53,7 +53,6 @@ public class UserDao {
 			ojs = new Object[] { userno };
 		}
 		List<User> result = Query(sql, ojs);
-		
 		return result;
 	}
 
@@ -98,9 +97,5 @@ public class UserDao {
 				user.getPostid(), user.getUserid() };
 		boolean result=Update(sql, args);
 		return result;
-	}
-	public void test()
-	{
-		
 	}
 }
