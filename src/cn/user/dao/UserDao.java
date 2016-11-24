@@ -2,6 +2,7 @@ package cn.user.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,12 +13,14 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import cn.table.User;
+import cn.util.Pager;
 
 @Repository
 public class UserDao {
 
 	@Resource
 	private JdbcTemplate jdbctemplate;
+	Pager pager;
 
 	public boolean register(User user) { // 注册用户
 		String sql = "insert into user(UserNo,Username,Password,Name,Phone,PostId) values(?,?,?,?,?,?)";
@@ -40,24 +43,52 @@ public class UserDao {
 
 	public List<User> querystaff(String userno, String name) { // 查询员工数据
 
-		String sql;
-		Object[] ojs;
+		String sql="select * from user where 1=1 ";
+		List objects=new ArrayList<Object>();
 		if (userno != null && !userno.equals("")) {
-			sql = "select * from user where userno like ?";
-			ojs = new Object[] { "%" + userno + "%" };
+			sql += "and userno like ?";
+			objects.add("%" + userno + "%");
 		} else if (name != null && !name.equals("")) {
-			sql = "select * from user where name like ?";
-			ojs = new Object[] { "%" + name + "%" };
-		} else {
-			sql = "select * from user where 1=1 or userno=?";
-			ojs = new Object[] { userno };
+			sql = "and name like ?";
+			objects.add("%" + name + "%");
 		}
-		List<User> result = Query(sql, ojs);
-		
+		List<User> result = Query(sql,objects.toArray());
+
 		return result;
 	}
 
-	public User getUerById(int userid) {  
+	public List<User> querystaff(String userno, String name, Pager pager) { // 查询员工数据
+
+		String sql="select * from user where 1=1 ";
+		List objects=new ArrayList<Object>();
+		if (userno != null && !userno.equals("")) {
+			sql += " and userno like ?";
+			objects.add("%" + userno + "%");
+		}
+		if (name != null && !name.equals("")) {
+			sql += " and name like ?";
+			objects.add("%" + name + "%");
+		}
+		
+		sql=sql.replace("*", "count(*)"); // 更换查询语句
+		pager.setTotalrecordsize(getCount(sql,objects.toArray())); // 更新记录数
+		this.pager = pager;
+		if (pager.getCurrentpage() <= 0)
+			this.pager.setCurrentpage(1);
+		else if (pager.getCurrentpage() > pager.getTotalpagesize())
+			this.pager.setCurrentpage(pager.getTotalpagesize());
+		sql=sql.replace("count(*)", "*");
+		sql = sql + " limit ?,?";
+		
+		objects.add(pager.getStartIndex());
+		objects.add(pager.getPagesize());
+		
+		List<User> result = Query(sql,objects.toArray());
+
+		return result;
+	}
+
+	public User getUerById(int userid) {
 		String sql = "select * from user where userid=?";
 		User user = Query(sql, new Object[] { userid }).get(0);
 		return user;
@@ -96,11 +127,15 @@ public class UserDao {
 		String sql = "update user set password=?,phone=?,postid=? where userid=?";
 		Object[] args = new Object[] { user.getPassword(), user.getPhone(),
 				user.getPostid(), user.getUserid() };
-		boolean result=Update(sql, args);
+		boolean result = Update(sql, args);
 		return result;
 	}
-	public void test()
-	{
-		
+
+	public int getCount(String sql, Object[] ojects) {
+		return jdbctemplate.queryForObject(sql, ojects, Integer.class);
+	}
+
+	public void test() {
+
 	}
 }

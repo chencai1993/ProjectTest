@@ -70,7 +70,7 @@
 										<a href="${basePath}admin/register.jsp" target="content">管理员添加</a>
 									</div>
 									<div class="content">
-										<a href="${basePath}admin/query.action" target="content">管理员查询</a>
+										<a href="${basePath}admin/querypaging.action" target="content">管理员查询</a>
 									</div>
 									
 								</div>
@@ -104,7 +104,7 @@
 										<a href="${basePath}staff/register.jsp" target="content">员工添加</a>
 									</div>
 									<div class="content">
-										<a href="${basePath}user/query.action" target="content">员工查询</a>
+										<a href="${basePath}user/querypaging.action" target="content">员工查询</a>
 									</div>
 								</div>
 							</div>

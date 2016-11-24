@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.admin.dao.AdminDao;
 import cn.table.Admin;
+import cn.util.Pager;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -55,6 +56,19 @@ public class AdminAction {
 
 
 		List<Admin> admins=admindao.query();
+		model.addAttribute("admins",admins);
+		
+		return "/admin/query.jsp";
+	}
+	
+	
+	@RequestMapping(value = { "/querypaging" })
+	public String querypaging(Model model,Pager pager) throws Exception {
+		// TODO Auto-generated method stub
+
+		
+		List<Admin> admins=admindao.querypaging(pager);
+		model.addAttribute("pager",admindao.getPager());
 		model.addAttribute("admins",admins);
 		
 		return "/admin/query.jsp";

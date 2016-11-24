@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.table.User;
 import cn.user.dao.UserDao;
+import cn.util.Pager;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -43,7 +44,7 @@ public class UserAction {
 
 		userdao.delete(userid);
 
-		return "/user/query.action";
+		return "/user/querypaging.action";
 	}
  
 	@RequestMapping(value = { "/modify" })   // 发出修改申请，跳转到正式修改的界面
@@ -61,7 +62,7 @@ public class UserAction {
 
 		userdao.modify(user);
 
-		return "/user/query.action";
+		return "/user/querypaging.action";
 	}
 
 	@RequestMapping(value = { "/query" })   // 查询员工，可以通过员工编号和姓名查询，二者选一，若同时为空则表示查询所有记录
@@ -70,5 +71,18 @@ public class UserAction {
 		model.addAttribute("users", users);
 		return "/staff/query.jsp";
 	}
+	
+	
+	@RequestMapping(value = { "/querypaging" })   // 查询员工，可以通过员工编号和姓名查询，二者选一，若同时为空则表示查询所有记录
+	public String QueryStaff(String userno, String name,Pager pager, Model model) {
+		List<User> users = userdao.querystaff(userno, name,pager);
+		model.addAttribute("users", users);
+		
+		model.addAttribute("userno",userno);
+		model.addAttribute("name", name);
+		
+		return "/staff/query.jsp";
+	}
+	
 
 }
